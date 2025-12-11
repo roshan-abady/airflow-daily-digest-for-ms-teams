@@ -1,4 +1,4 @@
-# Airflow Teams Daily Digest
+# Airflow Daily Digest in Teams
 
 An automated monitoring system that delivers daily Airflow pipeline health reports directly to Microsoft Teams via Power Automate Adaptive Cards.
 
