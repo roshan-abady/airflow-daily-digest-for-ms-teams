@@ -4,6 +4,37 @@
 
 The Airflow Teams Daily Digest is a multi-component system that automates the delivery of pipeline health reports from Apache Airflow to Microsoft Teams.
 
+## Design Decisions
+
+### Why Email Instead of Webhooks?
+
+**Initial Consideration**: The ideal architecture would use Airflow webhooks or direct API calls to Microsoft Teams for real-time integration.
+
+**Constraints Encountered**:
+1. **Access Limitations**: Direct webhook access to Airflow's infrastructure requires platform team approval and elevated permissions that were not available to the analytics team
+2. **Security Concerns**: The platform team raised security concerns about:
+   - Exposing webhook endpoints that could be accessed externally
+   - Granting outbound API access from Airflow to external services (Teams)
+   - Managing additional authentication credentials and secrets
+   - Potential network security policy violations
+
+**Chosen Solution**: Email-based integration using existing SMTP infrastructure.
+
+**Benefits of Email Approach**:
+- ✅ No additional security reviews required (email already approved)
+- ✅ No webhook endpoint exposure
+- ✅ No API credentials to manage
+- ✅ Leverages existing, approved infrastructure
+- ✅ Power Automate email triggers provide reliable, no-code integration
+- ✅ Works within existing security policies
+
+**Trade-offs**:
+- ⚠️ Slight delay (email delivery vs direct API call)
+- ⚠️ Additional parsing step required (HTML to text extraction)
+- ⚠️ Less real-time than webhook approach
+
+This pragmatic solution delivers the desired functionality while working within organizational security constraints.
+
 ## Component Flow
 
 ```
@@ -198,6 +229,8 @@ Teams rendering
 - **Email Authentication**: SMTP credentials stored in Airflow connections
 - **Teams Integration**: Uses Microsoft OAuth for Power Automate
 - **URL Generation**: Properly encodes parameters to prevent injection
+- **No Webhook Exposure**: Email approach avoids exposing endpoints
+- **No External API Access**: Uses approved email infrastructure only
 
 ## Monitoring
 
@@ -207,9 +240,8 @@ The DAG itself is excluded from monitoring to prevent recursive notifications.
 
 Potential improvements:
 
-1. **Direct API Integration**: Replace email with Teams webhook
+1. **Direct API Integration**: Replace email with Teams webhook (if security constraints are resolved)
 2. **Historical Trends**: Add charts showing success rates over time
 3. **Alerting**: Separate critical failure notifications
 4. **Customization**: Allow teams to configure which DAGs to monitor
 5. **Slack Integration**: Alternative to Teams
-
