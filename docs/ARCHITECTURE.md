@@ -1,8 +1,8 @@
-# Architecture Documentation
+# Architecture Documentation - Email-Based Integration
 
 ## System Overview
 
-The Airflow Teams Daily Digest is a multi-component system that automates the delivery of pipeline health reports from Apache Airflow to Microsoft Teams.
+The Airflow Teams Daily Digest is a multi-component system that automates the delivery of pipeline health reports from Apache Airflow to Microsoft Teams. **This solution intentionally uses email integration instead of webhooks** due to platform team security constraints and access limitations.
 
 ## Design Decisions
 
