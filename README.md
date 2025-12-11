@@ -1,6 +1,6 @@
-# Airflow Daily Digest in Teams
+# Airflow Daily Digest in Teams (Email-Based Integration)
 
-An automated monitoring system that delivers daily Airflow pipeline health reports directly to Microsoft Teams via Power Automate Adaptive Cards.
+An automated monitoring system that delivers daily Airflow pipeline health reports directly to Microsoft Teams via Power Automate Adaptive Cards. **This solution intentionally uses email integration instead of webhooks** due to platform team security constraints and access limitations.
 
 ## 🎯 Overview
 
@@ -16,6 +16,8 @@ This project automates the delivery of daily Airflow DAG run statistics to a Mic
 ```
 Airflow DAG → Email (HTML) → Power Automate → Teams Adaptive Card
 ```
+
+**Note**: This solution intentionally uses email as the integration mechanism rather than direct webhooks or API calls. See [Why Email Instead of Webhooks?](#-why-email-instead-of-webhooks) for details.
 
 1. **Airflow DAG** (`daily_digest.py`): Queries Airflow's metadata database for DAG run statistics
 2. **Email Operator**: Sends formatted HTML email to Teams channel email address
