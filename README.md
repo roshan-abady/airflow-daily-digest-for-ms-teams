@@ -208,6 +208,19 @@ This automation:
 - **Reduces response time**: Failed DAGs are identified instantly
 - **Builds team culture**: Streak counter gamifies reliability
 
+## 📋 TODO / Future Enhancements
+
+Potential improvements and enhancements:
+
+- [ ] **Slack Integration**: Add support for Slack as an alternative to Microsoft Teams
+  - Create Slack webhook integration
+  - Format messages using Slack Block Kit
+  - Support both Teams and Slack simultaneously
+- [ ] **Direct API Integration**: Replace email with Teams webhook (if security constraints are resolved)
+- [ ] **Historical Trends**: Add charts showing success rates over time
+- [ ] **Alerting**: Separate critical failure notifications
+- [ ] **Customization**: Allow teams to configure which DAGs to monitor via configuration file
+
 ## 🤝 Contributing
 
 This is a personal project documenting a production automation. Feel free to fork and adapt for your own use!
