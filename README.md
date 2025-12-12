@@ -1,4 +1,4 @@
-# Airflow Daily Digest in Teams (Email-Based Integration)
+# Airflow Daily Digest for Microsoft Teams (Email-Based Integration)
 
 An automated monitoring system that delivers daily Airflow pipeline health reports directly to Microsoft Teams via Power Automate Adaptive Cards. **This solution intentionally uses email integration instead of webhooks** due to platform team security constraints and access limitations.
 
